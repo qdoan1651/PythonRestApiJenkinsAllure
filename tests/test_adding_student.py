@@ -21,5 +21,5 @@ def test_add_user():
     assert first_name == request_data['first_name']
     assert middle_name == request_data['middle_name']
     assert last_name == request_data['last_name']
-    assert last_name == request_data['date_of_birth']
+    assert dob == request_data['date_of_birth']
 
