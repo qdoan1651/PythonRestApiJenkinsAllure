@@ -3,23 +3,27 @@ import requests, json
 def test_add_user():
     api_url = api_url = 'http://thetestingworldapi.com/api/studentsDetails'
 
-    request_data = {
-        "first_name": "Jason",
-        "middle_name": "API",
-        "last_name": "Path",
-        "date_of_birth": "5-5-1955"
-    }
+    # Read student info JSON from file
+    filename = 'D:/Workspace/Github/RestAPITestingPython/resources/student_info.json'
+    with open(filename, 'r') as infile:
+        request_data = json.load(infile)
 
     response = requests.post(api_url, request_data)
+    assert response.status_code == 201
+
     response_json = json.loads(response.text)
-    id = response_json['id']; print('ID: {}'.format(id))
+    id = response_json['id'];
     first_name = response_json['first_name']
     middle_name = response_json['middle_name']
     last_name = response_json['last_name']
     dob = response_json['date_of_birth']
-    assert response.status_code == 201
+
     assert first_name == request_data['first_name']
     assert middle_name == request_data['middle_name']
     assert last_name == request_data['last_name']
     assert dob == request_data['date_of_birth']
 
+    # Write id to file
+    filename = 'D:/Workspace/Github/RestAPITestingPython/resources/student_id.txt'
+    with open(filename, 'w') as outfile:
+        outfile.write(str(id))
