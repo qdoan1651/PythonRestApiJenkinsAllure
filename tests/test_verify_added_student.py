@@ -2,7 +2,7 @@ import requests, json
 
 def test_verify_added_user():
     # Getting student info from file
-    with open('../resources/student_info.json', 'r') as infile:
+    with open('D:/Workspace/Github/RestAPITestingPython/resources/student_info.json', 'r') as infile:
         expected_data = json.load(infile)
 
     # Getting student id from file

@@ -2,7 +2,7 @@ import requests, json
 
 def test_updated_student_info():
     # Getting student id from file
-    with open('../resources/student_id.txt', 'r') as infile:
+    with open('D:/Workspace/Github/RestAPITestingPython/resources/student_id.txt', 'r') as infile:
         student_id = infile.read()
     api_url = api_url = 'http://thetestingworldapi.com/api/studentsDetails/{}'.format(student_id)
 
