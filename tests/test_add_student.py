@@ -26,6 +26,6 @@ def test_add_user():
 
     # Write id to file
     project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-    outfile = os.path.join(project_path, 'resources/student_id.txt')
+    filename = os.path.join(project_path, 'resources/student_id.txt')
     with open(filename, 'w') as outfile:
         outfile.write(str(id))
