@@ -1,13 +1,18 @@
-import requests, json
+import requests, json, os
 
 def test_verify_added_user():
     # Getting student info from file
-    with open('D:/Workspace/Github/RestAPITestingPython/resources/student_info.json', 'r') as infile:
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    filename = os.path.join(project_path, 'resources/student_info.json')
+    with open(filename, 'r') as infile:
         expected_data = json.load(infile)
 
     # Getting student id from file
-    with open('../resources/student_id.txt', 'r') as infile:
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    filename = os.path.join(project_path, 'resources/student_id.txt')
+    with open(filename, 'r') as infile:
         student_id = infile.read()
+
     api_url = api_url = 'http://thetestingworldapi.com/api/studentsDetails/{}'.format(student_id)
 
     response = requests.get(api_url)
@@ -27,9 +32,3 @@ def test_verify_added_user():
     assert middle_name == expected_data['middle_name']
     assert last_name == expected_data['last_name']
     assert dob == expected_data['date_of_birth']
-
-# if __name__ == '__main__':
-#     filename = '../resources/student_id.txt'
-#     with open(filename, 'r') as infile:
-#         student_id = infile.read()
-#     print(student_id)

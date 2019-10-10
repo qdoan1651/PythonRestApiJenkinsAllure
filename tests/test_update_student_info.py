@@ -1,13 +1,18 @@
-import requests, json
+import requests, json, os
 
 def test_updated_student_info():
     # Getting student info from file
-    with open('D:/Workspace/Github/RestAPITestingPython/resources/updated_student_info.json', 'r') as infile:
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    filename = os.path.join(project_path, 'resources/updated_student_info.json')
+    with open(filename, 'r') as infile:
         updated_data = json.load(infile)
 
     # Getting student id from file
-    with open('D:/Workspace/Github/RestAPITestingPython/resources/student_id.txt', 'r') as infile:
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    filename = os.path.join(project_path, 'resources/student_id.txt')
+    with open(filename, 'r') as infile:
         student_id = infile.read()
+
     api_url = api_url = 'http://thetestingworldapi.com/api/studentsDetails/{}'.format(student_id)
 
     # Add student id to updated_data JSON

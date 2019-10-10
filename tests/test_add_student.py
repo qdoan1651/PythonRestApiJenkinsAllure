@@ -1,10 +1,11 @@
-import requests, json
+import requests, json, os
 
 def test_add_user():
     api_url = api_url = 'http://thetestingworldapi.com/api/studentsDetails'
 
     # Read student info JSON from file
-    filename = 'D:/Workspace/Github/RestAPITestingPython/resources/student_info.json'
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    filename = os.path.join(project_path, 'resources/student_info.json')
     with open(filename, 'r') as infile:
         request_data = json.load(infile)
 
@@ -12,7 +13,7 @@ def test_add_user():
     assert response.status_code == 201
 
     response_json = json.loads(response.text)
-    id = response_json['id'];
+    id = response_json['id']
     first_name = response_json['first_name']
     middle_name = response_json['middle_name']
     last_name = response_json['last_name']
@@ -24,6 +25,7 @@ def test_add_user():
     assert dob == request_data['date_of_birth']
 
     # Write id to file
-    filename = 'D:/Workspace/Github/RestAPITestingPython/resources/student_id.txt'
+    project_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    outfile = os.path.join(project_path, 'resources/student_id.txt')
     with open(filename, 'w') as outfile:
         outfile.write(str(id))
